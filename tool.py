@@ -7,7 +7,6 @@ from scapy.all import *
 import sys
 
 if __name__ == '__main__':
-	pkt = IP(dst = sys.argv[1]) / ICMP()
-	#print pkt.show2()
-	#traceroute(sys.argv[1])
-	sr1(pkt)
+	ans,unans = sr(IP(dst = sys.argv[1], ttl=4) / ICMP(type=13))
+	#ans.make_table(lambda (s,r): (s.dst, s.ttl, r.src ))
+	ans.summary()
