@@ -59,9 +59,9 @@ def calcDesvio(rttprom, rtts):
 	suma = sum([(i - rttprom)**2 for i in rtts])
 	return math.sqrt(suma/len(rtts))
 
-def analizarRuta (host, count, ttl):
+def analizarRuta (host, count):
 	ruta = []
-	for i in range(1,int(ttl)+1):
+	for i in range(1,65):
 		respuestas = 0
 		for j in range(0,int(count)):
 			if j==2 and respuestas==0:
@@ -85,24 +85,37 @@ def analizarRuta (host, count, ttl):
 				h.longitud = location[3]
 				h.ttl = i
 				ans = []
-		if respuestas != 0:		
+		if respuestas != 0:
+			if len(ruta)!=0:
+				if ruta[-1].ip==h.ip:
+					break		
 			h.rttprom = sum(h.rtts)/len(h.rtts)
 			h.desvio = calcDesvio(h.rttprom, h.rtts)
 			ruta.append(h)
-	
-	for i in ruta:
-		i.mostrar()
 	return ruta
 
 if __name__ == '__main__':
-	r = analizarRuta(sys.argv[1], sys.argv[2], sys.argv[3]) #host, count, ttl
-	
-	f = open("files/"+sys.argv[1]+".csv","w")
-	print >> f, "TTL,IP,RTT(prom),Location"
+	r = analizarRuta(sys.argv[1], sys.argv[2]) #host, count
+
+########## calculo de zscore ##############
+	rtts = [i.rttprom for i in r]
+	rttsuma = sum(rtts)
+	rttmedia = rttsuma/len(r)
+	desvio = calcDesvio(rttmedia,rtts)
 	for i in r:
-		string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+str(i.pais)
+		i.zscore = calczscore(i.rttprom, rttmedia, desvio)
+###########################################
+########## mostrar ruta ###################
+	for i in r:
+		i.mostrar()
+###########################################		
+
+	f = open("files/"+sys.argv[1]+".csv","w")
+	print >> f, "TTL,IP,RTT(prom),Desviacion Estandar,ZRTT,Location"
+	for i in r:
+		string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+str(i.desvio)+","+str(i.zscore)+","+str(i.pais)
 		if i.ip=="192.168.1.1":
-			string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+"*"
+			string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+str(i.desvio)+","+str(i.zscore)+",*"
 		if len(i.ciudad)!=0:
 			string = string+":"+str(i.ciudad)
 		print >>f, string
