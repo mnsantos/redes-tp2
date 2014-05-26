@@ -52,6 +52,12 @@ class Hop:
 		print "Longitud: "+self.longitud
 		print "---------------------"
 
+def esDistintaRuta(ruta1,ruta2):
+	for i in range(0,len(ruta1)):
+		if ruta1[i].ip != ruta2[i].ip:
+			return 1
+	return 0
+
 def calczscore(rtt, rttprom, desvio):
 	return (rtt-rttprom)/desvio
 
@@ -78,37 +84,38 @@ def analizarRuta (host, count):
 				rtt = (ans[0][1].time-ans[0][0].sent_time)*1000
 				h.rtts.append(rtt)
 				h.ip = ans[0][1].src
-				location = getlocation(h.ip)
-				h.pais = location[0]
-				h.ciudad = location[1]
-				h.latitud = location[2]
-				h.longitud = location[3]
 				h.ttl = i
 				ans = []
 		if respuestas != 0:
 			if len(ruta)!=0:
 				if ruta[-1].ip==h.ip:
-					break		
+					break
+			location = getlocation(h.ip)
+			h.pais = location[0]
+			h.ciudad = location[1]
+			h.latitud = location[2]
+			h.longitud = location[3]					
 			h.rttprom = sum(h.rtts)/len(h.rtts)
 			h.desvio = calcDesvio(h.rttprom, h.rtts)
 			ruta.append(h)
 	return ruta
 
 if __name__ == '__main__':
+
 	r = analizarRuta(sys.argv[1], sys.argv[2]) #host, count
 
-########## calculo de zscore ##############
+########## calculo de zscore ##############################
 	rtts = [i.rttprom for i in r]
 	rttsuma = sum(rtts)
 	rttmedia = rttsuma/len(r)
 	desvio = calcDesvio(rttmedia,rtts)
 	for i in r:
 		i.zscore = calczscore(i.rttprom, rttmedia, desvio)
-###########################################
-########## mostrar ruta ###################
+###########################################################
+########## mostrar ruta ###################################
 	for i in r:
 		i.mostrar()
-###########################################		
+###########################################################		
 
 	f = open("files/"+sys.argv[1]+".csv","w")
 	print >> f, "TTL,IP,RTT(prom),Desviacion Estandar,ZRTT,Location"
@@ -124,6 +131,19 @@ if __name__ == '__main__':
 	print >>f1, "Mapa,Pais"
 	for i in r:
 		if i.ip!="192.168.1.1":
-			print >>f1, str(i.latitud)+" "+str(i.longitud)+","+str(i.pais) 
+			print >>f1, str(i.latitud)+" "+str(i.longitud)+","+str(i.pais)
+
+################verificar ruas alternativas################				
+
+#	routes=[]
+#	for i in range(0,3):
+#		routes.append(analizarRuta(sys.argv[1], sys.argv[2])) #host, count
+#
+#	for i in routes:
+#		print [x.ip for x in i]
+#
+#	rutasAlternativas = [x for x in routes if esDistintaRuta(x,r)]
+#	for i in rutasAlternativas:
+#		print [x.ip for x in i]
 
 
