@@ -1,0 +1,5 @@
+Buenos Aires - Cordoba: 500km
+Cordoba - Wichita: 8700km
+Wichita - Denver: 700km
+Denver - South Australia: 14600km
+South Australia - Sidney:  1900km
