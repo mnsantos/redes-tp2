@@ -17,7 +17,13 @@ def getlocation(ip):
 	a = html[html.find("Ciudad")+17:html.find("Pa&iacute;s")+100]
 	b = a.find("<")
 	ciudad = a[: b]
-	return [pais,ciudad]	
+	a = html[html.find("LatLng(")+7:html.find("LatLng(")+7+20]
+	b = a.find(",")
+	latitud = a[: b]
+	a = a[b+1:b+10]
+	b = a.find(")")
+	longitud = a[: b]
+	return [pais,ciudad,latitud,longitud]
 
 class Hop:
 	def __init__(self):
@@ -29,6 +35,8 @@ class Hop:
 		self.zscore = 0
 		self.pais = ""
 		self.ciudad = ""
+		self.latitud = ""
+		self.longitud = ""
 
 	def mostrar(self):
 		print "---------Hop---------"
@@ -40,6 +48,8 @@ class Hop:
 		print "zscore: "+str(self.zscore)
 		print "pais: "+self.pais
 		print "ciudad: "+self.ciudad
+		print "Latitud: "+self.latitud
+		print "Longitud: "+self.longitud
 		print "---------------------"
 
 def calczscore(rtt, rttprom, desvio):
@@ -71,6 +81,8 @@ def analizarRuta (host, count, ttl):
 				location = getlocation(h.ip)
 				h.pais = location[0]
 				h.ciudad = location[1]
+				h.latitud = location[2]
+				h.longitud = location[3]
 				h.ttl = i
 				ans = []
 		if respuestas != 0:		
@@ -86,7 +98,7 @@ if __name__ == '__main__':
 	r = analizarRuta(sys.argv[1], sys.argv[2], sys.argv[3]) #host, count, ttl
 	if len(sys.argv)==5:
 		f = open(sys.argv[4],"w")
-		print >> f, "TTL,IP,RTT(prom),location"
+		print >> f, "TTL,IP,RTT(prom),Location"
 		for i in r:
 			string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+str(i.pais)
 			if i.ip=="192.168.1.1":

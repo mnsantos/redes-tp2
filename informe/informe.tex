@@ -5,17 +5,22 @@
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
 \usepackage[section]{placeins}
+\usepackage{csvsimple}
 \usepackage{caratula/caratula}
 \usepackage{listings}
 \usepackage{algpseudocode}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[
+singlelinecheck=false % <-- important
+]{caption}
+%\usepackage[spanish,es-noshorthands,es-lcroman]{babel}
 %\usepackage{adjustbox}
 \usepackage{blindtext}
 \usepackage{sidecap}
 \usepackage{color}
-
 
 \begin{document}
 
@@ -27,7 +32,25 @@
 \tableofcontents
 \newpage
 
+\section{Introducción}
 
+%\input{introduccion.tex}	
+
+\section{Desarrollo}
+
+%\input{desarrollo.tex}
+
+\section{Resultados y análisis}
+
+\input{resultados.tex}
+
+\section{Conclusiones}
+
+%\input{conclusiones.tex}
+
+\section{Referencias}
+
+%\input{referencias.tex}
 
 
 \end{document}
