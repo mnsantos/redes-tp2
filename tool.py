@@ -80,6 +80,18 @@ def analizarRuta (host, count, ttl):
 	
 	for i in ruta:
 		i.mostrar()
+	return ruta
 
 if __name__ == '__main__':
-	analizarRuta(sys.argv[1], sys.argv[2], sys.argv[3]) #host, count and ttl
+	r = analizarRuta(sys.argv[1], sys.argv[2], sys.argv[3]) #host, count, ttl
+	if len(sys.argv)==5:
+		f = open(sys.argv[4],"w")
+		print >> f, "TTL,IP,RTT(prom),location"
+		for i in r:
+			string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+str(i.pais)
+			if i.ip=="192.168.1.1":
+				string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+"*"
+			if len(i.ciudad)!=0:
+				string = string+":"+str(i.ciudad)
+			print >>f, string
+
