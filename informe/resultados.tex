@@ -46,6 +46,26 @@ Notar que a medida que los TTL's se van incrementando también lo hacen el RTT y
 
 \begin{figure}[H]
 	\begin{center}
+		  \includegraphics[scale=0.5]{../graficos_informe/mq_zscore.png}
+		  \caption{ZRTT para cada Gateway}
+		  \label{fig:contra1}
+	\end{center}
+\end{figure}
+
+Aquí puede observarse claramente que a partir del Gateway que se encuentra localizado en Australia, el ZRTT se torna positivo. Esto indica, como mencionamos anteriormente, que el RTT para estos Gateways es mayor a la media de la ruta global lo cual tiene sentido ya que atraviesan un enlace submarino.
+
+\begin{figure}[H]
+	\begin{center}
+		  \includegraphics[scale=0.5]{../graficos_informe/mq_rtt.png}
+		  \caption{RTT para cada Gateway}
+		  \label{fig:contra1}
+	\end{center}
+\end{figure}
+
+Podemos ver en este gráfico que los RTT's van creciendo a medida que vamos hacia la derecha del gráfico.
+
+\begin{figure}[H]
+	\begin{center}
 		  \includegraphics[scale=0.4]{../mapas/mapa_md.png}
 		  \caption{Mapa de la ruta atravesada para llegar a la universidad de Australia}
 		  \label{fig:contra1}
@@ -77,6 +97,26 @@ TTL & IP             & RTT(prom)        & Desviacion Estandar & ZRTT            
 \caption{Ruta hacia la universidad de Kamchatka}
 \label{my-label}
 \end{table}
+
+\begin{figure}[H]
+	\begin{center}
+		  \includegraphics[scale=0.5]{../graficos_informe/kamgu_zscore.png}
+		  \caption{ZRTT para cada Gateway}
+		  \label{fig:contra1}
+	\end{center}
+\end{figure}
+
+En este caso notamos que el ZRTT se torna positivo recién cuando el paquete atraviesa Rusia y no Italia. Sin embargo, notamos un aumento progresivo del ZScore.
+
+\begin{figure}[H]
+	\begin{center}
+		  \includegraphics[scale=0.5]{../graficos_informe/kamgu_rtt.png}
+		  \caption{RTT para cada Gateway}
+		  \label{fig:contra1}
+	\end{center}
+\end{figure}
+
+Al igual que antes, puede observarse un crecimiento hacia la derecha. Notar la gran diferencia que hay entre los RTT's de un Gateway argentino y uno ruso.
 
 \begin{figure}[H]
 	\begin{center}
@@ -114,10 +154,29 @@ TTL & IP             & RTT(prom)        & Desviacion Estandar & ZRTT           &
 
 \begin{figure}[H]
 	\begin{center}
+		  \includegraphics[scale=0.5]{../graficos_informe/aipet_zscore.png}
+		  \caption{ZRTT para cada Gateway}
+		  \label{fig:contra1}
+	\end{center}
+\end{figure}
+
+Al igual que para las universidades anteriores puede observarse la gran diferencia del ZRTT antes y luego de pasar el enlace submarino.
+
+\begin{figure}[H]
+	\begin{center}
+		  \includegraphics[scale=0.5]{../graficos_informe/aipet_rtt.png}
+		  \caption{RTT para cada Gateway}
+		  \label{fig:contra1}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
 		  \includegraphics[scale=0.4]{../mapas/mapa_aipet.png}
 		  \caption{Mapa de la ruta atravesada para llegar a la universidad de Kazakhstan}
 		  \label{fig:contra1}
 	\end{center}
 \end{figure}
 
+Como analisis final nos propusimos
 
