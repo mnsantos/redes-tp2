@@ -47,7 +47,7 @@ TTL & IP              & RTT(prom)        & Desviacion Estandar & ZRTT           
 22  & 137.111.189.4   & 361.728382111 ms & 13.9907095978       & 1.02694671034   & Australia               \\
 23  & 137.111.13.200  & 357.019650936 ms & 13.0007013927       & 0.991122224516  & Australia:Ryde          \\
 24  & 137.111.223.12  & 387.044274807 ms & 65.604054602        & 1.21955248999   & Australia               \\
-25  & 137.111.223.158 & 383.823335171 ms & 60.9346988401       & 1.19504726723   & Australia              
+25  & 137.111.223.158 & 383.823335171 ms & 60.9346988401       & 1.19504726723   & Australia
 \end{tabular}
 \caption{Ruta hacia la universidad de Australia}
 \label{my-label}
@@ -103,7 +103,7 @@ TTL & IP             & RTT(prom)        & Desviacion Estandar & ZRTT            
 16  & 85.28.192.173  & 979.524040222 ms & 17.6097548431       & 1.2558796662     & Russian Federation           \\
 17  & 85.28.192.90   & 950.519025326 ms & 6.6846143214        & 1.1865450074     & Russian Federation           \\
 18  & 77.82.16.83    & 947.636032104 ms & 7.30217338762       & 1.17965339393    & Russian Federation:Kamchatka \\
-19  & 85.28.217.202  & 963.758111 ms    & 8.51265755857       & 1.21819220673    & Russian Federation          
+19  & 85.28.217.202  & 963.758111 ms    & 8.51265755857       & 1.21819220673    & Russian Federation
 \end{tabular}
 \caption{Ruta hacia la universidad de Kamchatka}
 \label{my-label}
@@ -157,7 +157,7 @@ TTL & IP             & RTT(prom)        & Desviacion Estandar & ZRTT           &
 16  & 92.47.144.241  & 449.230837822 ms & 5.53464778354       & 0.996798806937 & Kazakhstan         \\
 17  & 92.47.144.222  & 409.93347168 ms  & 7.04609309313       & 0.791249818816 & Kazakhstan         \\
 19  & 212.154.158.10 & 425.195792142 ms & 9.11159408078       & 0.87108098399  & Kazakhstan:Almaty  \\
-20  & 212.154.158.3  & 448.334944248 ms & 6.16362142715       & 0.992112741797 & Kazakhstan:Almaty 
+20  & 212.154.158.3  & 448.334944248 ms & 6.16362142715       & 0.992112741797 & Kazakhstan:Almaty
 \end{tabular}
 \caption{Ruta hacia la universidad de Kazakhstan}
 \label{my-label}
@@ -193,7 +193,6 @@ Al igual que para las universidades anteriores puede observarse la gran diferenc
 
 Teniendo en cuenta los resultados obtenidos para cada facultad pudimos observar que el valor de ZRTT calculado para cada Gateway definía bastante bien si se trataba de un enlace submarino o no. En la totalidad de los casos evaluados, un valor de ZRTT positivo nos indicaba la presencia de un enlace submarino por lo cual con determinar $u>0$ nos alcanza para detectarlos.
 
-\subsection{RTT teórico vs RTT experimental}
 
 \subsection{Ping vs RTT's calculados}
 
@@ -264,3 +263,71 @@ Los resultados obtenidos por la $tool$ fueron:
 \end{itemize}
 
 Como es posible observar, los resultados obtenidos por la $tool$ son bastante parecidos a los de $ping$.
+
+\subsection{RTT teórico vs RTT experimental}
+
+Recorrido hasta la universidad de Aipetz (Kasajistán)
+
+\begin{itemize}
+	\item Buenos Aires - Cordoba: 500km
+	\item Cordoba - Italia: 11500km
+	\item Italia - Rusia: 5800km
+	\item Rusia - Kazakhstan: 2500km
+	\item Kazakhstan - Almaty:  900km
+\end{itemize}
+
+Distancia total: 500+11500+5800+2500+900 = 21200 km
+Tiempo de propagación óptimo (Asumiendo links directos entre cada uno de los nodos):
+$\frac{21200km}{300000km-s}$ = 0.07 = 70 ms
+
+
+Recorrido hasta la universidad de Kamgu (Kamchatka)
+
+\begin{itemize}
+	\item Buenos Aires - Cordoba: 500km
+	\item Cordoba - Italia: 11500km
+	\item Italia - Rusia: 5800km
+	\item Rusia - Sharinsk:  2100km
+\end{itemize}
+
+Distancia total: 500+11500+5800+2100 = 19900
+Tiempo de propagación óptimo (Asumiendo links directos entre cada uno de los nodos):
+$\frac{19900}{300000km-s}$ = 0.066 = 66 ms
+
+
+\begin{itemize}
+	\item Buenos Aires - Cordoba: 500km
+	\item Cordoba - Wichita: 8700km
+	\item Wichita - Denver: 700km
+	\item Denver - South Australia: 14600km
+	\item South Australia - Sidney:  1900km
+\end{itemize}
+
+Distancia tota: 500+8700+700+14600+1900 = 26400
+Tiempo de propagación óptimo (Asumiendo links directos entre cada uno de los nodos):
+$\frac{26400}{300000km-s}$ = 0.088 = 88 ms
+
+Como podemos notar, si todos los enlaces entre los nodos geográficos fueran directos,
+asumiendo una velocidad de propagación de los datos equivalente a la de la velocidad
+de la luz, el tiempo que tardarían los paquetes ICMP en llegar a destino sería similar
+en los 3 casos. (Entre 50 y 100 ms). Como era de esperarse, este tiempo teórico óptimo
+es bastante menor al obtenido experimentalmente. Sin embargo se encuentra en el mismo
+orden de magnitud.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
