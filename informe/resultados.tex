@@ -1,6 +1,18 @@
 %http://www.tablesgenerator.com/latex_tables
 
-\begin{table}[h]
+Para el análisis de las rutas nos centraremos principalmente en el RTT y ZRTT de cada Gateway atravesado. Es importante mencionar que no todos los Gateways emiten una respuesta a los paquetes ICMP emitidos ya que algunos podrían no tener implementada esa funcionalidad. Por esta razón se verá más adelante que los TTL presentados en las tablas no crecen de a uno.
+
+Para calcular el RTT de cada Gateway envíamos numerosos paquetes al mismo de forma tal que pudiera obtenerse un promedio. También se calculó el desvío estandar.
+
+Además del RTT se obtuvo el ZRTT para cada Gateway. Este valor nos permite analizar si un determinado Gateway tiene un RTT mayor o menor a la media con respecto a la ruta global, dependiendo de si el ZRTT es positivo o negativo. Por lo tanto es una muy buena herramienta para analizar si se trata de un enlace submarino.
+
+Para verificar si los valores de RTT y ZRTT se correspondían con la realidad decidimos utilizar diversas herramientas de geolocalización de modo que pudiera determinarse la ubicación aproximada de un Gateway. De esta forma nos era posible verificar, por ejemplo, si a valores grandes de ZRTT para determinado Gateway le correspondian IP's alejadas de nuestro origen. También incluimos, para cada ruta analizada, un mapa en donde pueden verse los lugares por donde van pasando los paquetes.
+
+A continuación, los resultados obtenidos:
+
+\subsection{Universidad de Australia}
+
+\begin{table}[H]
 \begin{tabular}{llllll}
 TTL & IP              & RTT(prom)        & Desviacion Estandar & ZRTT            & Location                \\
 1   & 192.168.1.1     & 1.58843994141 ms & 0.223531225414      & -1.71303307932  & *                       \\
@@ -30,7 +42,19 @@ TTL & IP              & RTT(prom)        & Desviacion Estandar & ZRTT           
 \label{my-label}
 \end{table}
 
-\begin{table}[h]
+Notar que a medida que los TTL's se van incrementando también lo hacen el RTT y ZRTT. Esto era esperado que sucediera ya que los Gateways se encuentran cada vez más lejos del origen. Este comportamiento podrá verse mejor en los siguientes gráficos.
+
+\begin{figure}[H]
+	\begin{center}
+		  \includegraphics[scale=0.4]{../mapas/mapa_md.png}
+		  \caption{Mapa de la ruta atravesada para llegar a la universidad de Australia}
+		  \label{fig:contra1}
+	\end{center}
+\end{figure}
+
+\subsection{Universidad de Kamchatka}
+
+\begin{table}[H]
 \begin{tabular}{llllll}
 TTL & IP             & RTT(prom)        & Desviacion Estandar & ZRTT             & Location                     \\
 1   & 192.168.1.1    & 1.80819829305 ms & 0.731853407234      & -1.08128839049   & *                            \\
@@ -54,7 +78,17 @@ TTL & IP             & RTT(prom)        & Desviacion Estandar & ZRTT            
 \label{my-label}
 \end{table}
 
-\begin{table}[h]
+\begin{figure}[H]
+	\begin{center}
+		  \includegraphics[scale=0.4]{../mapas/mapa_kamgu.png}
+		  \caption{Mapa de la ruta atravesada para llegar a la universidad de Kamchatka}
+		  \label{fig:contra1}
+	\end{center}
+\end{figure}
+
+\subsection{Universidad de Kazakhstan}
+
+\begin{table}[H]
 \begin{tabular}{llllll}
 TTL & IP             & RTT(prom)        & Desviacion Estandar & ZRTT           & Location           \\
 1   & 192.168.1.1    & 1.54423713684 ms & 0.117139102366      & -1.34487283163 & *                  \\
@@ -77,3 +111,13 @@ TTL & IP             & RTT(prom)        & Desviacion Estandar & ZRTT           &
 \caption{Ruta hacia la universidad de Kazakhstan}
 \label{my-label}
 \end{table}
+
+\begin{figure}[H]
+	\begin{center}
+		  \includegraphics[scale=0.4]{../mapas/mapa_aipet.png}
+		  \caption{Mapa de la ruta atravesada para llegar a la universidad de Kazakhstan}
+		  \label{fig:contra1}
+	\end{center}
+\end{figure}
+
+
