@@ -24,8 +24,6 @@ def graficador_1(ips,rtts,sds):
 	plt.savefig("graficos/rtt")	
 	plt.show()
 
-def graficador_2(data):
-
 if __name__ == "__main__":
 	ips = []
 	rtts = []
