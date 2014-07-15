@@ -17,7 +17,7 @@ def graficador(ips,rtts):
 	plt.xlabel('Direcciones de IP')
 	plt.ylabel('Rtt relativo')
 
-	plt.ylim([-70,160])
+	plt.ylim([-80,150])
 	plt.title('Rtts relativos x IP')
 	plt.xticks(index+bar_width+0.4, ips)
 	plt.xticks(rotation = -75)

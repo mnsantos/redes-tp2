@@ -17,7 +17,7 @@ def graficador(ips,zscores):
 	plt.xlabel('Direcciones de IP')
 	plt.ylabel('zrtt')
 
-	plt.ylim([-2,1.6])
+	plt.ylim([-1.8,2])
 	plt.title('zscore x IP')
 	plt.xticks(index+bar_width+0.4, ips)
 	plt.xticks(rotation = -75)
