@@ -1,6 +1,24 @@
 Para realizar el traceroute creamos una herramienta en Python usando la librería Scapy. 
-Nuestra implementación de traceroute hace uso del TTL(time to leave), que es uno de los campos de los paquetes IP. El TTL limita el alcance de los paquetes en la red, ya que cuando un nodo en la red recibe un paquete con TTL <= 1, no lo envía al nodo siguiente, sino que el paquete que no avanza más allá de ese nodo. Además, cada vez que se hace un salto o hop, es decir, cada vez que un nodo de la red recibe un paquete y lo envía al nodo siguiente, se decrementa el TTL. Valiéndonos de este comportamiento, envíamos paquetes con TTL incrementales, comenzando desde 1, de modo de alcanzar un nodo cada vez mas cercano al destino con cada incremento.
-Para construir la ruta hacia un nodo destino, almacenamos el IP del nodo alcanzado por cada valor incremental de TTL. Para esto envíamos paquetes ICMP(paquetes de control) de tipo Echo Request, de modo de recibir paquetes Echo Reply por cada nuevo nodo alcanzado. Esto nos permite identificar los paquetes envíados y recibidos. Por cada paquete recibido anotamos su IP y calculamos el RTT(tiempo transcurrido entre el envío y respuesta del paquete).
-Una vez alcanzado el nodo destino se detiene la ejecución y como resultado se obtiene la ruta completa.
+Nuestra implementación de traceroute hace uso del TTL(time to live), que es uno de los campos de los paquetes IP. El TTL limita el alcance de los paquetes en la red, ya que cuando un nodo en la red recibe un paquete con TTL <= 1, no lo envía al nodo siguiente, sino que el paquete no avanza más allá de ese nodo. Además, cada vez que se hace un salto o hop, es decir, cada vez que un nodo de la red recibe un paquete y lo envía al nodo siguiente, se decrementa el TTL. Valiéndonos de este comportamiento, envíamos paquetes con TTL incrementales, comenzando desde 1, de modo de alcanzar un nodo cada vez mas cercano al destino con cada incremento.
+Para construir la ruta hacia un nodo destino, almacenamos el IP del nodo alcanzado por cada valor incremental de TTL. Para esto envíamos paquetes ICMP(paquetes de control) de tipo Echo Request, de modo de recibir paquetes Echo Reply por cada nuevo nodo alcanzado. Esto nos permite identificar los paquetes envíados y recibidos. 
 
-Realizamos el traceroute para 3 IPs distintas correspondientes a 3 universidades. Estas universidades se encuentran en Australia, Rusia y Kazakhstan. El criterio usado para la elección de estas universidades fue que sean tales que sea necesario pasar por un cable transatlántico para llegar a ellas, siendo Buenos Aires, el origen. El objetivo es encontrar relaciones del RTT con las distancias recorridas.
+Por cada paquete recibido anotamos su IP y calculamos el RTT (tiempo transcurrido entre el envío y respuesta del paquete) desde el nodo origen. Con este valor estimamos el RTT para cada enlace atravesado (hop $i$ y hop $i+1$) para luego aplicar un análisis de zscore que más adelante detallaremos. La manera de estimar los RTT entre cada par de Hops es la siguiente:
+\newline
+\newline
+$RTT_i$ = RTT desde el origen hasta el nodo $i$
+\newline
+$RTT_{i+1}$ = RTT desde el origen hasta el nodo $i+1$
+\newline
+$RTTRelativo_{i+1}$ = $RTT_{i+1}$ - $RTT_i$
+\newline
+
+Una vez alcanzado el nodo destino se detiene la ejecución y como resultado se obtiene la ruta completa. De cada nodo atravesado conocemos su RTT desde el origen \footnote{El RTT se trata de un RTT promedio estimado tras el envio de 20 paquetes a cada nodo.} y, además, el RTT relativo con el hop anterior. A partir de estos datos calculamos el valor de zscore para cada nodo con el fin de caracterizar los distintos enlaces atravesados:
+\newline
+\newline
+$ZRTT_i = \frac{RTT_i-\overline{RTT}}{SRTT}$
+en donde $RTT_i$ es el $RTT$ relativo calculado para cada salto, $\overline{RTT}$ es el $RTT$ relativo promedio de la ruta global y $SRTT$ es el desvío estándar de la ruta global.
+\newline
+
+En relación a los valores standard computados anteriormente, realizaremos un análisis de prueba y error con el fin de encontrar un umbral que permita caracterizar lo mejor posible los enlaces submarinos.
+
+Realizamos el traceroute para 3 IPs distintas correspondientes a 3 universidades. Estas universidades se encuentran en Australia, Rusia y Japón. El criterio usado para la elección de estas universidades fue que sean tales que sea necesario pasar por un cable transatlántico para llegar a ellas, siendo Buenos Aires, el origen.
