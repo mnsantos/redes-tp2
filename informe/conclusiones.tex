@@ -1,1 +1,6 @@
-Como resultado de la información presentada, es posible concluir que el valor de ZRTT calculado fue de gran utilidad para caracterizar el tipo de enlace en el que se econtraban los Gateways de las rutas, permitiéndonos diferenciar a los enlaces submarinos. Por otro lado, comparando los resultados entre la $tool$ y $ping$ podemos mencionar que la $tool$ obtuvo resultados bastante cercanos a la realidad.
+Como resultado de la información presentada, concluimos que el valor de ZRTT de un enlace es útil para dar una idea de la distancia que este recorre. 
+
+Hicimos una aproximación para un umbral, tal que los enlaces que tienen un ZRTT por arriba de ese umbral, tienen altas chances de ser enlaces submarinos. Para aproximar el valor del umbral tuvimos en cuenta el ZRTT de los enlaces submarinos y aquellos que no lo son. El valor aproximado es tal que el valor de ZRTT para los enlaces submarinos se encuentra un poco por encima. 
+A pesar de ello, concluimos que el ZRTT no sirve para caracterizar al 100 por ciento los enlaces submarinos, ya que obtuvimos valores de ZRTT para enlaces terrestres también por encima del umbral. De todas maneras, esos casos eran enlaces que según pudimos ver, recorrían largas distancias terrestres(en su mayoría).
+
+Otro resultado interesante es que comparando los resultados entre la $tool$ y $ping$ obtuvimos que la $tool$ ofreció valores bastante cercanos a la realidad.
