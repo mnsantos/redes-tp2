@@ -8,7 +8,7 @@ def csv_reader_zscore(file_obj, file):
     """
     reader = csv.reader(file_obj)
     for row in reader:
-    	print >>file, row[1]+"-"+row[5]+" "+row[4]
+    	print >>file, row[1]+"-"+row[6]+" "+row[4]
 
 def csv_reader_rtt(file_obj, file):
 	"""
@@ -16,7 +16,7 @@ def csv_reader_rtt(file_obj, file):
 	"""
 	reader = csv.reader(file_obj)
 	for row in reader:
-		print >>file, row[1]+" "+row[2]+" "+row[3]
+		print >>file, row[1]+"-"+row[6]+" "+row[3]
 	        
 
  

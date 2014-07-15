@@ -17,7 +17,7 @@ def graficador(ips,zscores):
 	plt.xlabel('Direcciones de IP')
 	plt.ylabel('zrtt')
 
-	plt.ylim([-3,3])
+	plt.ylim([-2,1.6])
 	plt.title('zscore x IP')
 	plt.xticks(index+bar_width+0.4, ips)
 	plt.xticks(rotation = -75)
@@ -30,10 +30,13 @@ if __name__ == "__main__":
 	ips = []
 	zscores = []
 	with open(sys.argv[1]) as f:
+		i = 0
 		for line in f:
-			line = line.split()
-			ips.append(line[0])
-			zscores.append(line[1])
+			if i!=0:	
+				line = line.split()
+				ips.append(line[0])
+				zscores.append(line[1])
+			i = i+1
 
 		zscores = [float(z) for z in zscores]
 		graficador(ips,zscores)
