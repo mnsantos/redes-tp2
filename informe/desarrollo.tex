@@ -4,7 +4,8 @@ Para construir la ruta hacia un nodo destino, almacenamos el IP del nodo alcanza
 
 Por cada paquete recibido anotamos su IP y calculamos el RTT (tiempo transcurrido entre el envío y respuesta del paquete) desde el nodo origen. Con este valor estimamos el RTT para cada enlace atravesado (hop $i$ y hop $i+1$) para luego aplicar un análisis de zscore que más adelante detallaremos. La manera de estimar los RTT entre cada par de Hops es la siguiente:
 \newline
-$RTTRelativo_{i+1}$ = RTT desde el origen hasta el nodo $i+1$ - RTT desde el origen hasta el nodo $i$
+\newline
+$RTT_{i+1}$ = RTT desde el origen hasta el nodo $i+1$ - RTT desde el origen hasta el nodo $i$
 \newline
 
 Una vez alcanzado el nodo destino se detiene la ejecución y como resultado se obtiene la ruta completa. De cada nodo atravesado conocemos su RTT desde el origen \footnote{El RTT se trata de un RTT promedio estimado tras el envio de 20 paquetes a cada nodo.} y, además, el RTT relativo con el hop anterior. A partir de estos datos calculamos el valor de zscore para cada nodo con el fin de caracterizar los distintos enlaces atravesados:
@@ -14,6 +15,6 @@ $ZRTT_i = \frac{RTT_i-\overline{RTT}}{SRTT}$
 en donde $RTT_i$ es el $RTT$ relativo calculado para cada salto, $\overline{RTT}$ es el $RTT$ relativo promedio de la ruta global y $SRTT$ es el desvío estándar de la ruta global.
 \newline
 
-En relación a los valores standard computados anteriormente, realizaremos un análisis de prueba y error con el fin de encontrar un umbral que permita caracterizar lo mejor posible los enlaces submarinos.
+En relación a los valores standard computados anteriormente, realizamos un análisis de prueba y error con el fin de encontrar un umbral que permita caracterizar lo mejor posible los enlaces submarinos.
 
 Realizamos el traceroute para 3 IPs distintas correspondientes a 3 universidades. Estas universidades se encuentran en Australia, Rusia y Japón. El criterio usado para la elección de estas universidades fue que sean tales que sea necesario pasar por un cable transatlántico para llegar a ellas, siendo Buenos Aires, el origen.
