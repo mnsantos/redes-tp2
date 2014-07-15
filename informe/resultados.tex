@@ -21,6 +21,8 @@
 
 %A continuación, los resultados obtenidos:
 
+Para cada una de las universidades mencionadas en la sección anterior recopilamos muestras en dos rangos horarios distintos para lograr un análisis más preciso. Haciendo uso de esta información encontraremos un umbral que permita caracterizar lo mejor posible los enlaces submarinos. A continuación, los resultados obtenidos:
+
 \subsection{Universidad de Australia}
 
 % Please add the following required packages to your document preamble:
@@ -329,87 +331,79 @@ TTL & IP              & RTT(prom)        & RTT Relativo      & ZRTT             
 
 Para cada facultad decidimos comparar el valor de RTT obtenido por la $tool$ implementada con lo que retorna el comando $ping$. A continuación los resultados:
 
-Ping a Universidad de Australia:
+Ping a Universidad de Australia (2014-07-15 11:29):
 \begin{verbatim}
 PING www.mq.edu.au (137.111.223.158) 56(84) bytes of data.
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=1 ttl=238 time=451 ms
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=2 ttl=238 time=519 ms
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=3 ttl=238 time=492 ms
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=4 ttl=238 time=547 ms
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=5 ttl=238 time=471 ms
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=6 ttl=238 time=533 ms
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=7 ttl=238 time=502 ms
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=8 ttl=238 time=506 ms
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=9 ttl=238 time=464 ms
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=10 ttl=238 time=525 ms
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=11 ttl=238 time=469 ms
-64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=12 ttl=238 time=524 ms
+64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=1 ttl=238 time=391 ms
+64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=2 ttl=238 time=346 ms
+64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=3 ttl=238 time=441 ms
+64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=4 ttl=238 time=371 ms
+64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=5 ttl=238 time=393 ms
+64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=6 ttl=238 time=342 ms
+64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=7 ttl=238 time=378 ms
+64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=8 ttl=238 time=384 ms
+64 bytes from survivor.mq.edu.au (137.111.223.158): icmp_req=9 ttl=238 time=405 ms
+
 \end{verbatim}
 
-Ping a Universidad de Kamchatka:
+Ping a Universidad de Kamchatka (2014-07-15 11:35):
 
 \begin{verbatim}
 PING ns.kamgu.ru (85.28.217.202) 56(84) bytes of data.
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=1 ttl=48 time=953 ms
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=2 ttl=48 time=946 ms
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=3 ttl=48 time=962 ms
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=4 ttl=48 time=951 ms
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=5 ttl=48 time=962 ms
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=6 ttl=48 time=946 ms
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=7 ttl=48 time=951 ms
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=8 ttl=48 time=963 ms
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=9 ttl=48 time=965 ms
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=10 ttl=48 time=968 ms
+64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=1 ttl=48 time=944 ms
+64 bytes from ns.kamgpu.ru (85.28.217.202): icmp_req=2 ttl=48 time=958 ms
+64 bytes from ns.kamgpu.ru (85.28.217.202): icmp_req=3 ttl=48 time=948 ms
+64 bytes from ns.kamgpu.ru (85.28.217.202): icmp_req=4 ttl=48 time=948 ms
+64 bytes from ns.kamgpu.ru (85.28.217.202): icmp_req=5 ttl=48 time=949 ms
+64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=6 ttl=48 time=949 ms
+64 bytes from ns.kamgpu.ru (85.28.217.202): icmp_req=7 ttl=48 time=948 ms
+64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=8 ttl=48 time=949 ms
+64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=9 ttl=48 time=964 ms
+64 bytes from ns.kamgpu.ru (85.28.217.202): icmp_req=10 ttl=48 time=941 ms
 64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=11 ttl=48 time=946 ms
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=12 ttl=48 time=974 ms
-64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=13 ttl=48 time=951 ms
+64 bytes from ns.kamgu.ru (85.28.217.202): icmp_req=12 ttl=48 time=970 ms
 \end{verbatim}
 
-Ping a Universidad de Kazajistán:
+Ping a Universidad de Japón (2014-07-15 11:42):
 
 \begin{verbatim}
-PING mail.aipet.kz (212.154.158.3) 56(84) bytes of data.
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=1 ttl=242 time=371 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=2 ttl=242 time=349 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=3 ttl=242 time=360 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=4 ttl=242 time=363 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=5 ttl=242 time=356 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=6 ttl=242 time=368 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=7 ttl=242 time=351 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=8 ttl=242 time=356 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=9 ttl=242 time=348 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=10 ttl=242 time=354 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=11 ttl=242 time=355 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=12 ttl=242 time=354 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=13 ttl=242 time=354 ms
-64 bytes from mail.aipet.kz (212.154.158.3): icmp_req=14 ttl=242 time=369 ms
+PING jsc.soka.ac.jp (153.127.247.190) 56(84) bytes of data.
+64 bytes from v4099.vir.kagoya.net (153.127.247.190): icmp_req=1 ttl=43 time=326 ms
+64 bytes from v4099.vir.kagoya.net (153.127.247.190): icmp_req=2 ttl=43 time=345 ms
+64 bytes from v4099.vir.kagoya.net (153.127.247.190): icmp_req=3 ttl=43 time=321 ms
+64 bytes from v4099.vir.kagoya.net (153.127.247.190): icmp_req=4 ttl=43 time=324 ms
+64 bytes from v4099.vir.kagoya.net (153.127.247.190): icmp_req=5 ttl=43 time=368 ms
+64 bytes from v4099.vir.kagoya.net (153.127.247.190): icmp_req=6 ttl=43 time=321 ms
+64 bytes from v4099.vir.kagoya.net (153.127.247.190): icmp_req=7 ttl=43 time=336 ms
+64 bytes from v4099.vir.kagoya.net (153.127.247.190): icmp_req=8 ttl=43 time=323 ms
+64 bytes from v4099.vir.kagoya.net (153.127.247.190): icmp_req=9 ttl=43 time=326 ms
 \end{verbatim}
 
 Los resultados obtenidos por la $tool$ fueron:
 
 \begin{itemize}
-	\item Universidad de Autralia: 383.823335171 ms
-	\item Universidad de Kamchatka: 963.758111 ms
-	\item Universidad de Kazajistán: 448.334944248 ms
+	\item Universidad de Autralia: 343.915832043 ms por la mañana y 447.635984421 ms por la noche.
+	\item Universidad de Kamchatka: 947.841417789 ms por la mañana y 959.138429165 ms por la noche.
+	\item Universidad de Japón: 327.491104603 ms por la mañana y 467.461919785 ms por la noche.
 \end{itemize}
 
 Como es posible observar, los resultados obtenidos por la $tool$ son bastante parecidos a los de $ping$.
 
 \subsection{RTT teórico vs RTT experimental}
 
-Recorrido hasta la universidad de Aipetz (Kasajistán)
+Recorrido hasta la universidad de Japón
 
 \begin{itemize}
 	\item Buenos Aires - Cordoba: 500km
 	\item Cordoba - Italia: 11500km
-	\item Italia - Rusia: 5800km
-	\item Rusia - Kazakhstan: 2500km
-	\item Kazakhstan - Almaty:  900km
+	\item Italia - China: 7.565km
+	\item China - Osaka: 2.832km
+	\item Osaka - Tokio: 396km
 \end{itemize}
 
-Distancia total: 500+11500+5800+2500+900 = 21200 km
+Distancia total: 500+11500+7565+2832+396 = 22793 km
 Tiempo de propagación óptimo (Asumiendo links directos entre cada uno de los nodos):
-$\frac{21200km}{300000km-s}$ = 0.07 = 70 ms
+$\frac{22793km}{200000km-s}$ = 0.11 = 110 ms
 
 
 Recorrido hasta la universidad de Kamgu (Kamchatka)
@@ -423,7 +417,7 @@ Recorrido hasta la universidad de Kamgu (Kamchatka)
 
 Distancia total: 500+11500+5800+2100 = 19900
 Tiempo de propagación óptimo (Asumiendo links directos entre cada uno de los nodos):
-$\frac{19900}{300000km-s}$ = 0.066 = 66 ms
+$\frac{19900}{200000km-s}$ = 0.0995 = 99.5 ms
 
 
 \begin{itemize}
@@ -436,14 +430,11 @@ $\frac{19900}{300000km-s}$ = 0.066 = 66 ms
 
 Distancia tota: 500+8700+700+14600+1900 = 26400
 Tiempo de propagación óptimo (Asumiendo links directos entre cada uno de los nodos):
-$\frac{26400}{300000km-s}$ = 0.088 = 88 ms
+$\frac{26400}{200000km-s}$ = 0.132 = 132 ms
 
 Como podemos notar, si todos los enlaces entre los nodos geográficos fueran directos,
 asumiendo una velocidad de propagación de los datos equivalente a la de la velocidad
-de la luz, el tiempo que tardarían los paquetes ICMP en llegar a destino sería similar
-en los 3 casos. (Entre 50 y 100 ms). Como era de esperarse, este tiempo teórico óptimo
-es bastante menor al obtenido experimentalmente. Sin embargo se encuentra en el mismo
-orden de magnitud.
+de propagación utilizando fibra óptica \footnote{http://en.wikipedia.org/wiki/Optical\_fiber}, el tiempo que tardarían los paquetes ICMP en llegar a destino sería similar en los 3 casos. (Entre 100 y 132 ms). Como era de esperarse, este tiempo teórico óptimo es bastante menor al obtenido experimentalmente. Sin embargo se encuentra en el mismo orden de magnitud.
 
 
 

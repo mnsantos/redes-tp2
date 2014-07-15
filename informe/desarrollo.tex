@@ -4,12 +4,7 @@ Para construir la ruta hacia un nodo destino, almacenamos el IP del nodo alcanza
 
 Por cada paquete recibido anotamos su IP y calculamos el RTT (tiempo transcurrido entre el envío y respuesta del paquete) desde el nodo origen. Con este valor estimamos el RTT para cada enlace atravesado (hop $i$ y hop $i+1$) para luego aplicar un análisis de zscore que más adelante detallaremos. La manera de estimar los RTT entre cada par de Hops es la siguiente:
 \newline
-\newline
-$RTT_i$ = RTT desde el origen hasta el nodo $i$
-\newline
-$RTT_{i+1}$ = RTT desde el origen hasta el nodo $i+1$
-\newline
-$RTTRelativo_{i+1}$ = $RTT_{i+1}$ - $RTT_i$
+$RTTRelativo_{i+1}$ = RTT desde el origen hasta el nodo $i+1$ - RTT desde el origen hasta el nodo $i$
 \newline
 
 Una vez alcanzado el nodo destino se detiene la ejecución y como resultado se obtiene la ruta completa. De cada nodo atravesado conocemos su RTT desde el origen \footnote{El RTT se trata de un RTT promedio estimado tras el envio de 20 paquetes a cada nodo.} y, además, el RTT relativo con el hop anterior. A partir de estos datos calculamos el valor de zscore para cada nodo con el fin de caracterizar los distintos enlaces atravesados:
