@@ -126,7 +126,7 @@ if __name__ == '__main__':
 		i.mostrar()
 ###########################################################		
 
-	f = open("files/segunda_medicion/"+sys.argv[1]+".csv","w")
+	f = open("files/"+sys.argv[1]+".csv","w")
 	print >> f, "TTL,IP,RTT(prom),RTT Relativo,ZRTT,Fecha,Lugar"
 	for i in r:
 		string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+str(i.rttRelativo)+" ms,"+str(i.zscore)+","+str(today)+","+str(i.pais)
@@ -136,7 +136,7 @@ if __name__ == '__main__':
 			string = string+":"+str(i.ciudad)
 		print >>f, string
 
-	f1 = open("files/segunda_medicion/"+sys.argv[1]+"_coordenadas.csv","w")
+	f1 = open("files/"+sys.argv[1]+"_coordenadas.csv","w")
 	print >>f1, "Mapa,Pais"
 	for i in r:
 		if i.ip!="192.168.1.1":
