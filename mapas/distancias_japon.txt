@@ -1,0 +1,5 @@
+Buenos Aires - Cordoba: 500km
+Cordoba - Italia: 11500km
+Italia - China: 7500km
+China - Osaka: 2700km
+Osaka - Tokyo: 400km
