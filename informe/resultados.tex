@@ -335,6 +335,29 @@ TTL & IP              & RTT(prom)        & RTT Relativo      & ZRTT             
 
 \subsection{Determinación del umbral}
 
+Con los resultados obtenidos, el objetivo es obtener el valor de un umbral que permita distinguir los enlaces submarinos. Para esto definimos un umbral arbitrario $u$, de modo que si $ZRTT_i$ > $u$, luego el salto $i$ debe pertenecer a un enlace submarino.
+
+Como primera aproximación tomamos $u = 1/2$. 
+
+Mirando las tablas para las distintas universidades se distinguen enlaces con ZRTT justo por encima del umbral y otros que están muy por encima.
+Por ejemplo, tomando la primer tabla para la universidad de Australia, el enlace entre los nodos con TTL 11 y 13 tiene un ZRTT de 0.504, solo un poco mayor al umbral, y el enlace entre los nodos con TTL 15 y 16, 1.91.
+
+Es de esperar que aquellos enlaces con ZRTT muy por encima del umbral, sean enlaces submarinos y en cambio aquellos que están solo un poco por encima, tengan una menor chance de ser submarinos.
+
+En los ejemplos mencionados, resulta que el enlace con mayor ZRTT efectivamente corresponde a un enlace submarino, pues es un enlace entre Estados Unidos y Australia y el que tiene menor ZRTT no es submarino, ya que es un enlace dentro de Estados Unidos, y según la herramienta de geolocalización, es un enlace entre nodos que están en la misma ciudad, o sea muy cercanos.
+
+Otros enlaces distinguidos en la tabla son entre los nodos con TTL 1 y 2(1.43), 8 y 9(1.77), 17 y 18(1.44) y 22 y 23(0.66).
+Consideramos que el primero entre los nodos con TTL 1 y 2, tal vez se deba a congestión en la red al momento de tomar la muestra, ya que el mismo enlace en otras mediciones no reporto un ZRTT tan alto. 
+
+El enlace entre los nodos con TTL 8 y 9, tiene un comportamiento que no es el esperado. Es un enlace entre 2 locaciones de Estados Unidos que, en las dos muestras tomadas para Australia, muestra el ZRTT más alto. Sospechamos que hay un error en la herramienta de geolocalización al reportar el primer nodo del enlace dentro de Estados Unidos. Para esta conjetura nos basamos en el hecho de que el nodo en la ruta que esta justo antes de ese enlace está en Argentina, y la herramienta está reportando un RTT muy bajo entre el enlace entre Argentina y Estados Unidos. Por eso creemos que en realidad, ese RTT corresponde a un enlace entre Argentina y Estados Unidos.
+
+Este comportamiento sospechoso se ve también en el enlace que está entre Argentina e Italia, muestra un ZRTT muy por debajo del umbral(valor negativo) en las tablas para las universidades de Rusia y Japón, pero el enlace que le sigue que es un enlace entre nodos dentro de Italia muestra un ZRTT muy alto, siendo 1.13, 1.36, 2.43 y 3.68 los valores de las muestras. Por eso creemos que ese enlace en realidad es el enlace submarino entre Argentina e Italia.
+En las tablas con las muestras tomadas para la universidad de Japón, el enlace entre Italia y Japón tiene un ZRTT de 1.36 y 1.82. Lo cual tiene un valor muy por encima del umbral que es esperado. Pero a su vez hay otros enlaces que tienen un valor similar que están dentro de Japón. 
+
+Por último uno de los enlaces distinguidos con mayor ZRTT es uno que está dentro de Rusia(entre los nodos 13 y 14 en las tablas de la universidad de Kamchatka). Según las locaciones de los nodos, la distancia recorrida de ese enlace es muy grande(varios miles de kilómetros), por lo que aunque es un enlace terrestre, tiene sentido que tenga un ZRTT alto, ya que además puede ser que el enlace no sea muy veloz a Kamchatka.
+
+A partir del análisis de todos estos enlaces, podemos concluir que una mejor aproximación para el umbral es usar $u$ entre 1 y 1.3, o para estar más seguros usar $u=1$, ya que los enlaces submarinos como valor más bajo reportaron ZRTT de 1.36, para Argentina-Italia(considerando que nuestra sospecha con respecto a ese enlace es cierta).
+
 %Teniendo en cuenta los resultados obtenidos para cada facultad pudimos observar que el valor de ZRTT calculado para cada Gateway definía bastante bien si se trataba de un enlace submarino o no. En la totalidad de los casos evaluados, un valor de ZRTT positivo nos indicaba la presencia de un enlace submarino por lo cual con determinar $u>0$ nos alcanza para detectarlos.
 
 
