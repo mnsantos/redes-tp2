@@ -113,20 +113,20 @@ if __name__ == '__main__':
 	now = datetime.datetime.now()
 	today = now.strftime("%Y-%m-%d %H:%M")
 
-########## calculo de zscore ##############################
-	rtts = [i.rttprom for i in r]
+########## calculo de zscore Relativo ##############################
+	rtts = [i.rttRelativo for i in r]
 	rttsuma = sum(rtts)
 	rttmedia = rttsuma/len(r)
 	desvio = calcDesvio(rttmedia,rtts)
 	for i in r:
-		i.zscore = calczscore(i.rttprom, rttmedia, desvio)
+		i.zscore = calczscore(i.rttRelativo, rttmedia, desvio)
 ###########################################################
 ########## mostrar ruta ###################################
 	for i in r:
 		i.mostrar()
 ###########################################################		
 
-	f = open("files/"+sys.argv[1]+".csv","w")
+	f = open("files/segunda_medicion/"+sys.argv[1]+".csv","w")
 	print >> f, "TTL,IP,RTT(prom),RTT Relativo,ZRTT,Fecha,Lugar"
 	for i in r:
 		string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+str(i.rttRelativo)+" ms,"+str(i.zscore)+","+str(today)+","+str(i.pais)
@@ -136,7 +136,7 @@ if __name__ == '__main__':
 			string = string+":"+str(i.ciudad)
 		print >>f, string
 
-	f1 = open("files/"+sys.argv[1]+"_coordenadas.csv","w")
+	f1 = open("files/segunda_medicion/"+sys.argv[1]+"_coordenadas.csv","w")
 	print >>f1, "Mapa,Pais"
 	for i in r:
 		if i.ip!="192.168.1.1":
