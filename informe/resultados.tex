@@ -25,7 +25,7 @@ Para cada una de las universidades mencionadas en la sección anterior recopilam
 
 Algunas aclaraciones sobre las tablas presentadas de aquí en adelante:
 \begin{itemize}
-\item TTL: TTL del paquete enviado.
+\item TTL: TTL del paquete enviado. Como se verá más adelante en las tablas, los TTLs no crecen de a uno. Esto se debe a que algunos routers de la ruta no responden a los paquetes ICMP del tipo Echo Request.
 \item IP: Ip del Nodo que emite respuesta.
 \item RTT(prom): es el RTT desde el nodo origen hasta el Nodo en cuestión. Debido a que se envían varios paquetes por nodo se calcula un promedio.
 \item RTT Relativo: es el RTT estimado entre el enlace del Nodo en cuestión y el nodo anterior. Por ejemplo: si el Hop anterior tenía un RTT(prom) de 40ms y el nodo actual un RTT(prom) de 80ms el RTT relativo es de 40ms.
