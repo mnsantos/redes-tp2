@@ -7,6 +7,7 @@ from scapy.all import *
 import sys
 import math
 import urllib
+import datetime
 
 def getlocation(ip):
 	response = urllib.urlopen("http://www.geoiptool.com/es/?IP="+str(ip))
@@ -37,12 +38,14 @@ class Hop:
 		self.ciudad = ""
 		self.latitud = ""
 		self.longitud = ""
+		self.rttRelativo = 0
 
 	def mostrar(self):
 		print "---------Hop---------"
 		print "ip: "+str(self.ip)
 		print "ttl: "+str(self.ttl)
 		print "rttprom: "+str(self.rttprom)
+		print "rttRelativo: "+str(self.rttRelativo)
 		print "desvio: "+str(self.desvio)
 		print "rtts: "+str(self.rtts)
 		print "zscore: "+str(self.zscore)
@@ -96,6 +99,10 @@ def analizarRuta (host, count):
 			h.latitud = location[2]
 			h.longitud = location[3]					
 			h.rttprom = sum(h.rtts)/len(h.rtts)
+			if len(ruta) == 0:
+				h.rttRelativo = h.rttprom
+			else:
+				h.rttRelativo = h.rttprom - ruta[len(ruta)-1].rttprom
 			h.desvio = calcDesvio(h.rttprom, h.rtts)
 			ruta.append(h)
 	return ruta
@@ -103,6 +110,8 @@ def analizarRuta (host, count):
 if __name__ == '__main__':
 
 	r = analizarRuta(sys.argv[1], sys.argv[2]) #host, count
+	now = datetime.datetime.now()
+	today = now.strftime("%Y-%m-%d %H:%M")
 
 ########## calculo de zscore ##############################
 	rtts = [i.rttprom for i in r]
@@ -118,12 +127,12 @@ if __name__ == '__main__':
 ###########################################################		
 
 	f = open("files/"+sys.argv[1]+".csv","w")
-	print >> f, "TTL,IP,RTT(prom),Desviacion Estandar,ZRTT,Location"
+	print >> f, "TTL,IP,RTT(prom),RTT Relativo,ZRTT,Fecha,Lugar"
 	for i in r:
-		string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+str(i.desvio)+","+str(i.zscore)+","+str(i.pais)
+		string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+str(i.rttRelativo)+" ms,"+str(i.zscore)+","+str(today)+","+str(i.pais)
 		if i.ip=="192.168.1.1":
-			string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+str(i.desvio)+","+str(i.zscore)+",*"
-		if len(i.ciudad)!=0:
+			string = str(i.ttl)+","+str(i.ip)+","+str(i.rttprom)+" ms,"+str(i.rttRelativo)+" ms,"+str(i.zscore)+","+str(today)+",*"
+		if len(i.ciudad)!=0:	
 			string = string+":"+str(i.ciudad)
 		print >>f, string
 
@@ -133,7 +142,7 @@ if __name__ == '__main__':
 		if i.ip!="192.168.1.1":
 			print >>f1, str(i.latitud)+" "+str(i.longitud)+","+str(i.pais)
 
-################verificar ruas alternativas################				
+################verificar rutas alternativas################				
 
 #	routes=[]
 #	for i in range(0,3):
